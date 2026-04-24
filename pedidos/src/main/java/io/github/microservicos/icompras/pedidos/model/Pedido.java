@@ -1,6 +1,7 @@
 package io.github.microservicos.icompras.pedidos.model;
 
-import io.github.microservicos.icompras.pedidos.emuns.StatusPedido;
+import io.github.microservicos.icompras.pedidos.controller.dto.DadosPagamentoDTO;
+import io.github.microservicos.icompras.pedidos.model.enums.StatusPedido;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -8,13 +9,16 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name="pedidos")
@@ -50,4 +54,10 @@ public class Pedido {
 
     @Column(name = "url_nf")
     private String urlNF;
+
+    @Transient
+    private DadosPagamento dadosPagamento;
+
+    @OneToMany(mappedBy = "pedido")
+    private List<ItemPedido> itens;
 }
