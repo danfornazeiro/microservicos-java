@@ -25,11 +25,11 @@ public class ItemPedido {
     private Long codigo;
 
     @ManyToOne
-    @JoinColumn(name = "pedido_codigo")
+    @JoinColumn(name = "codigo_pedido")
     private Pedido pedido;
 
     @Column(name = "codigo_produto")
-    private Long codigpProduto;
+    private Long codigoProduto;
 
     @Column(name = "quantidade")
     private Integer quantidade;

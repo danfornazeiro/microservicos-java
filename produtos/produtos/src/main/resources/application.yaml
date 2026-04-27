@@ -3,9 +3,16 @@ spring:
     name: produtos
   datasource:
     url: jdbc:postgresql://177.153.39.4:5555/icomprasprodutos
-    username: postgres
-    password: postgres
+    username: produto_user
+    password: produto123
     driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 1
+      minimum-idle: 1
+      connection-timeout: 30000
+      validation-timeout: 5000
+      idle-timeout: 600000
+      max-lifetime: 1800000
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:

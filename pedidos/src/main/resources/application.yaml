@@ -3,9 +3,16 @@ spring:
     name: pedidos
   datasource:
     url: jdbc:postgresql://177.153.39.4:5555/icompraspedidos
-    username: postgres
-    password: postgres
+    username: pedido_user
+    password: pedido123
     driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 1
+      minimum-idle: 1
+      connection-timeout: 30000
+      validation-timeout: 5000
+      idle-timeout: 600000
+      max-lifetime: 1800000
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
@@ -17,3 +24,11 @@ spring:
 
 server:
   port: 8080
+
+icompras:
+  pedidos:
+    clients:
+      produtos:
+        url: "http://localhost:8081/produtos"
+      clientes:
+        url: "http://localhost:8082/clientes"
