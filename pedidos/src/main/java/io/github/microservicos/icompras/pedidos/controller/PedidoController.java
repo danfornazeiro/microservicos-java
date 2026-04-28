@@ -1,7 +1,9 @@
 package io.github.microservicos.icompras.pedidos.controller;
 
+import io.github.microservicos.icompras.pedidos.controller.dto.NovoPagamentoDTO;
 import io.github.microservicos.icompras.pedidos.controller.dto.NovoPedidoDTO;
 import io.github.microservicos.icompras.pedidos.controller.mappers.PedidoMapper;
+import io.github.microservicos.icompras.pedidos.exception.ItemNaoEncontradoException;
 import io.github.microservicos.icompras.pedidos.exception.ValidationException;
 import io.github.microservicos.icompras.pedidos.model.ErroResponse;
 import io.github.microservicos.icompras.pedidos.service.PedidoService;
@@ -31,6 +33,26 @@ public class PedidoController {
                      e.getMessage()
              );
              return ResponseEntity.badRequest().body(response);
+        }
+    }
+
+    @PostMapping("pagamentos")
+    public ResponseEntity<Object> adicionarNovoPagamento(@RequestBody NovoPagamentoDTO novoPagamentoDTO) {
+        try {
+            pedidoService.adicionarNovoPagamento(
+                    novoPagamentoDTO.codigoPedido(),
+                    novoPagamentoDTO.dadosCartao(),
+                    novoPagamentoDTO.tipoPagamento()
+            );
+
+            return  ResponseEntity.noContent().build();
+        } catch (ItemNaoEncontradoException e) {
+            var response = new ErroResponse(
+                    "Item não Encontrado",
+                    "codigoPedido",
+                    e.getMessage()
+            );
+            return  ResponseEntity.badRequest().body(response);
         }
     }
 
