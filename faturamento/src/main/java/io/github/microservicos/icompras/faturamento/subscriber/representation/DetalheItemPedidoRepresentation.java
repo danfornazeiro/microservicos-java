@@ -6,9 +6,6 @@ public record DetalheItemPedidoRepresentation(
         Long codigoProduto,
         String nome,
         Integer quantidade,
-        BigDecimal valorUnitario
-) {
-    public BigDecimal getTotal() {
-        return valorUnitario.multiply(BigDecimal.valueOf(quantidade));
-    }
-}
+        BigDecimal valorUnitario,
+        BigDecimal total
+) {}

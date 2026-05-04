@@ -10,11 +10,15 @@ import org.springframework.kafka.core.ConsumerFactory;
 
 @Configuration
 @EnableConfigurationProperties
-@ConfigurationProperties(prefix = "spring")
+@ConfigurationProperties(prefix = "spring.kafka")
 @Data
 public class KafkaProps {
-    String bootstrapServers;
-    String groupId;
-    String topic;
-    String autoOffsetReset;
+    private String bootstrapServers;
+    private Consumer consumer = new Consumer();
+
+    @Data
+    public static class Consumer {
+        private String groupId;
+        private String autoOffsetReset;
+    }
 }

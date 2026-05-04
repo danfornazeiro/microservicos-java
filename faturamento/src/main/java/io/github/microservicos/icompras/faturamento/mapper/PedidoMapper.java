@@ -38,7 +38,8 @@ public class PedidoMapper {
             representation.codigoProduto(),
             representation.nome(),
             representation.valorUnitario(),
-            representation.quantidade()
+            representation.quantidade(),
+            representation.total()
         );
     }
 }

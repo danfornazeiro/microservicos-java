@@ -1,14 +1,16 @@
 package io.github.microservicos.icompras.faturamento.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import java.math.BigDecimal;
 
-public record ItemPedido(
-        Long codigo,
-        String descricao,
-        BigDecimal valorUnitario,
-        Integer quantidade
-) {
-    public BigDecimal getTotal() {
-        return valorUnitario.multiply(BigDecimal.valueOf(quantidade));
-    }
+@Data
+@AllArgsConstructor
+public class ItemPedido {
+    private Long codigo;
+    private String descricao;
+    private BigDecimal valorUnitario;
+    private Integer quantidade;
+    private BigDecimal total;
 }
