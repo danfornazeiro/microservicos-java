@@ -16,7 +16,10 @@ public class AtualizacaoStatusPedidoService {
         repository.findById(codigo).ifPresent(
                 pedido -> {
                     pedido.setStatusPedido(status);
-                    pedido.setUrlNF(urlNF);
+
+                    if (urlNF != null)
+                        pedido.setUrlNF(urlNF);
+
                     pedido.setCodigoRastreio(codigoRastreio);
                 }
         );
