@@ -1,8 +1,7 @@
 package io.github.microservicos.icompras.faturamento.subscriber;
 
-import io.github.microservicos.icompras.faturamento.GeradorNotaFiscalService;
+import io.github.microservicos.icompras.faturamento.service.GeradorNotaFiscalService;
 import io.github.microservicos.icompras.faturamento.mapper.PedidoMapper;
-import io.github.microservicos.icompras.faturamento.model.Pedido;
 import io.github.microservicos.icompras.faturamento.subscriber.representation.DetalhePedidoRepresentation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +24,7 @@ public class PedidoPagoSubscriber {
             var representation = objectMapper.readValue(json, DetalhePedidoRepresentation.class);
             var pedido = pedidoMapper.map(representation);
             geradorNotaFiscalService.gerarNotaFiscal(pedido);
-
+            log.info("Faturamento gerado com sucesso");
         } catch (Exception e){
             log.error("Erro na comunicação do tópico: " + e.getMessage());
         }

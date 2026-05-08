@@ -1,6 +1,13 @@
 spring:
   application:
     name: pedidos
+
+  kafka:
+    bootstrap-servers: 'http://localhost:29092'
+    consumer:
+      group-id: icompras-atualizacao-pedido
+      auto-offset-reset: earliest
+
   datasource:
     url: jdbc:postgresql://177.153.39.4:5555/icompraspedidos
     username: pedido_user

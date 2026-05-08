@@ -20,6 +20,8 @@ public interface DetalhePedidoMapper {
     @Mapping(source = "dataPedido", target = "dataPedido", dateFormat = "yyyy-MM-dd")
     @Mapping(source = "total", target = "total")
     @Mapping(source = "statusPedido", target = "statusPedido")
+    @Mapping(source = "urlNF", target = "urlNF")
+    @Mapping(source = "codigoRastreio", target = "codigoRastreio")
     @Mapping(source = "itens", target = "itens")
     DetalhePedidoRepresentation map(Pedido pedido);
 }
